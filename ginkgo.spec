@@ -1,4 +1,4 @@
-%define version  0.1
+%define version  0.1.1
 %define release  %mkrel 1
 
 Name:            ginkgo
@@ -22,6 +22,7 @@ framework.
 %files -f %{name}.lang
 %defattr(-,root,root)
 %_kde_appsdir/%name
+%_bindir/%name
 
 #------------------------------------------------
 
@@ -34,6 +35,8 @@ framework.
 rm -rf %buildroot
 %__mkdir -p %buildroot%_kde_appsdir/%name
 cp -frv src/* %buildroot%_kde_appsdir/%name/
+%__mkdir %buildroot%_bindir/
+cp -frv %name %buildroot%_bindir/%name
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/locale
 #make po_files
