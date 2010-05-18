@@ -5,7 +5,7 @@ Name:            ginkgo
 Version:         %{version}
 Release:         %{release}
 License:         GPLv2+
-Url:             http://www.mandriva.com/
+Url:             http://wiki.mandriva.com/en/Ginkgo
 Group:           Graphical desktop/KDE 
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         %name-%version.tar.bz2
@@ -14,7 +14,10 @@ BuildRequires:   kde4-macros
 Requires:        python-kde4
 BuildArch:       noarch
 %description
-Ginkgo is a navigator for Nepomuk, the KDE semantic toolkit
+Ginkgo is a graphical front-end for managing data semantically. Ginkgo 
+lets you create and explore links between your personal data such 
+as e-mails, contacts, files, Web pages. It harnesses the Nepomuk
+framework.
 
 %files -f %{name}.lang
 %defattr(-,root,root)
