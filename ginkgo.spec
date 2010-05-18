@@ -10,6 +10,7 @@ Group:           Graphical desktop/KDE
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         %name-%version.tar.bz2
 Summary:         Ginkgo is a navigator for Nepomuk, the KDE semantic toolkit
+BuildRequires:   kde4-macros
 Requires:        python-kde4
 BuildArch:       noarch
 %description
