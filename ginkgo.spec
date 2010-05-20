@@ -1,4 +1,4 @@
-%define version  0.1.4
+%define version  0.1.5
 %define release  %mkrel 1
 
 Name:            ginkgo
