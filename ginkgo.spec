@@ -1,4 +1,4 @@
-%define version  0.2
+%define version  0.2.1
 %define release  %mkrel 1
 
 Name:            ginkgo
@@ -12,6 +12,7 @@ Source0:         %name-%version.tar.bz2
 Summary:         Ginkgo is a navigator for Nepomuk, the KDE semantic toolkit
 BuildRequires:   kde4-macros
 Requires:        python-kde4
+Requires:        nepomuk-scribo
 BuildArch:       noarch
 %description
 Ginkgo is a graphical front-end for managing data semantically. Ginkgo 
