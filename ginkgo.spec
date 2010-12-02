@@ -1,5 +1,5 @@
 %define version  0.31
-%define release  %mkrel 1
+%define release  %mkrel 2
 
 Name:            ginkgo
 Version:         %{version}
