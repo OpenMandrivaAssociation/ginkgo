@@ -39,11 +39,11 @@ cp -frv src/* %buildroot%_kde_appsdir/%name/
 %__mkdir %buildroot%_bindir/
 cp -frv %name %buildroot%_bindir/%name
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/locale
+mkdir -p %{buildroot}%{_datadir}/locale
 #make po_files
 for i in po/*.po
 do
-  langdir="$RPM_BUILD_ROOT%{_datadir}/locale/`basename ${i} .po`/LC_MESSAGES/"
+  langdir="%{buildroot}%{_datadir}/locale/`basename ${i} .po`/LC_MESSAGES/"
   mkdir -p ${langdir}
   msgfmt -o ${langdir}/%name.mo ${i}
 done
