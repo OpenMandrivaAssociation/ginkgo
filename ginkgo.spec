@@ -1,19 +1,16 @@
-%define version  0.32
-%define release  %mkrel 1
+Name:		ginkgo
+Version:	0.32
+Release:	2
+License:	GPLv2+
+Url:		http://wiki.mandriva.com/en/Ginkgo
+Group:		Graphical desktop/KDE 
+Source0:	%{name}-%{version}.tar.bz2
+Summary:	Ginkgo is a navigator for Nepomuk, the KDE semantic toolkit
+BuildRequires:	kde4-macros
+Requires:	python-kde4
+Requires:	python-mako
+BuildArch:	noarch
 
-Name:            ginkgo
-Version:         %{version}
-Release:         %{release}
-License:         GPLv2+
-Url:             http://wiki.mandriva.com/en/Ginkgo
-Group:           Graphical desktop/KDE 
-BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source0:         %name-%version.tar.bz2
-Summary:         Ginkgo is a navigator for Nepomuk, the KDE semantic toolkit
-BuildRequires:   kde4-macros
-Requires:        python-kde4
-Requires:        python-mako
-BuildArch:       noarch
 %description
 Ginkgo is a graphical front-end for managing data semantically. Ginkgo 
 lets you create and explore links between your personal data such 
@@ -21,23 +18,32 @@ as e-mails, contacts, files, Web pages. It harnesses the Nepomuk
 framework.
 
 %files -f %{name}.lang
-%defattr(-,root,root)
-%_kde_appsdir/%name
-%_bindir/%name
+%{_kde_appsdir}/%{name}
+%{_bindir}/%{name}
 
 #------------------------------------------------
 
 %prep
-%setup -q -n %name-%version
+%setup -q
+
+# Fix unreadable files
+find . -perm 0600 -exec chmod 0644 '{}' \;
 
 %build
+# clean old leftover from the tarball that prevent upload
+rm -Rf src/ginkgo/util/.cache
+
+# change "Report a Bug" URL to Rosa Bugzilla
+sed -i 's!https://qa.mandriva.com!http://bugs.rosalinux.ru/!' %{name}
+
+# also change .po headers for consistency
+sed -i 's!https://qa.mandriva.com/!http://bugs.rosalinux.ru/!' po/*.po
 
 %install
-rm -rf %buildroot
-%__mkdir -p %buildroot%_kde_appsdir/%name
-cp -frv src/* %buildroot%_kde_appsdir/%name/
-%__mkdir %buildroot%_bindir/
-cp -frv %name %buildroot%_bindir/%name
+mkdir -p %{buildroot}%{_kde_appsdir}/%{name}
+cp -frv src/* %{buildroot}%{_kde_appsdir}/%{name}/
+mkdir %{buildroot}%{_bindir}/
+cp -frv %{name} %{buildroot}%{_bindir}/%{name}
 
 mkdir -p %{buildroot}%{_datadir}/locale
 #make po_files
@@ -48,9 +54,5 @@ do
   msgfmt -o ${langdir}/%name.mo ${i}
 done
 
-
-%find_lang %name
-
-%clean
-rm -rf %buildroot
+%find_lang %{name}
 
