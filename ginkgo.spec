@@ -1,4 +1,4 @@
-Summary:	Ginkgo is a navigator for Nepomuk, the KDE semantic toolkit
+Summary:	Navigator for Nepomuk, the KDE semantic toolkit
 Name:		ginkgo
 Version:	0.32
 Release:	2
