@@ -1,7 +1,7 @@
 Summary:	Navigator for Nepomuk, the KDE semantic toolkit
 Name:		ginkgo
 Version:	0.32
-Release:	6
+Release:	7
 License:	GPLv2+
 Url:		http://wiki.mandriva.com/en/Ginkgo
 Group:		Graphical desktop/KDE 
