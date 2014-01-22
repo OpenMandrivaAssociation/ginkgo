@@ -1,7 +1,7 @@
 Summary:	Navigator for Nepomuk, the KDE semantic toolkit
 Name:		ginkgo
 Version:	0.32
-Release:	7
+Release:	9
 License:	GPLv2+
 Url:		http://wiki.mandriva.com/en/Ginkgo
 Group:		Graphical desktop/KDE 
@@ -10,6 +10,7 @@ BuildArch:	noarch
 BuildRequires:	kde4-macros
 Requires:	python-kde4
 Requires:	python-mako
+Requires:       oxygen-icon-theme
 
 %description
 Ginkgo is a graphical front-end for managing data semantically. Ginkgo 
@@ -19,6 +20,7 @@ framework.
 
 %files -f %{name}.lang
 %{_kde_appsdir}/%{name}
+%{_kde_datadir}/applications/kde4/%{name}.desktop
 %{_bindir}/%{name}
 
 #------------------------------------------------
@@ -51,8 +53,22 @@ for i in po/*.po
 do
   langdir="%{buildroot}%{_datadir}/locale/`basename ${i} .po`/LC_MESSAGES/"
   mkdir -p ${langdir}
-  msgfmt -o ${langdir}/%name.mo ${i}
+  msgfmt -o ${langdir}/%{name}.mo ${i}
 done
+
+chmod -R a+r %{buildroot}/%{_kde_appsdir}/%{name}
+
+mkdir -p %{buildroot}%{_kde_datadir}/applications/kde4
+
+cat > %{buildroot}%{_kde_datadir}/applications/kde4/%{name}.desktop << EOF
+[Desktop Entry]
+Name=Ginkgo
+Comment=Ginkgo is a graphical front-end for Nepomuk
+Exec=%{_bindir}/%{name}
+Icon=nepomuk
+Type=Application
+Categories=Utility;KDE;Qt;
+EOF
 
 %find_lang %{name}
 
