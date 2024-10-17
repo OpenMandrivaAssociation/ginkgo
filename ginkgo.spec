@@ -3,7 +3,7 @@ Name:		ginkgo
 Version:	0.32
 Release:	14
 License:	GPLv2+
-Url:		http://wiki.mandriva.com/en/Ginkgo
+Url:		https://wiki.mandriva.com/en/Ginkgo
 Group:		Graphical desktop/KDE 
 Source0:	%{name}-%{version}.tar.bz2
 BuildArch:	noarch
